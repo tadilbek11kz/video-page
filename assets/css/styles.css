@@ -1,0 +1,148 @@
+/* Custom font declaration */
+@font-face {
+    font-family: 'Lacquer';
+    src: url('../fonts/Lacquer-Regular.ttf') format('truetype');
+    font-weight: 400;
+    font-style: normal;
+}
+
+/* Book container styling */
+.book-container {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    cursor: pointer;
+    /* Creates 3D perspective for book animation */
+    perspective: 600px;
+}
+
+/* Initial book rotation animation */
+@keyframes initAnimation {
+    0% {
+        transform: rotateY(0deg);
+    }
+
+    100% {
+        transform: rotateY(-35deg);
+    }
+}
+
+/* Book element styling */
+.book {
+    width: 250px;
+    height: 350px;
+    position: relative;
+    /* Enables 3D transformations */
+    transform-style: preserve-3d;
+    transform: rotateY(-35deg);
+    transition: 2s ease;
+    animation: 1s ease 0s 1 initAnimation;
+}
+
+/* Hover animation for book */
+.book-container:hover .book,
+.book-container:focus .book {
+    transform: rotateY(0deg);
+}
+
+/* Front cover of book */
+.book> :first-child {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 250px;
+    height: 350px;
+    transform: translateZ(15px);
+    background-color: #01060f;
+    border-radius: 0 2px 2px 0;
+    box-shadow: 5px 5px 20px #666;
+}
+
+/* Book spine styling */
+.book::before {
+    position: absolute;
+    content: ' ';
+    left: 0;
+    top: 3px;
+    width: 28px;
+    height: 344px;
+    transform: translateX(232px) rotateY(90deg);
+    /* Gradient creates page effect on spine */
+    background: linear-gradient(90deg,
+            #fff 0%,
+            #f9f9f9 5%,
+            #fff 10%,
+            #f9f9f9 15%,
+            #fff 20%,
+            #f9f9f9 25%,
+            #fff 30%,
+            #f9f9f9 35%,
+            #fff 40%,
+            #f9f9f9 45%,
+            #fff 50%,
+            #f9f9f9 55%,
+            #fff 60%,
+            #f9f9f9 65%,
+            #fff 70%,
+            #f9f9f9 75%,
+            #fff 80%,
+            #f9f9f9 85%,
+            #fff 90%,
+            #f9f9f9 95%,
+            #fff 100%);
+}
+
+/* Back cover of book */
+.book::after {
+    position: absolute;
+    top: 0;
+    left: 0;
+    content: ' ';
+    width: 250px;
+    height: 350px;
+    transform: translateZ(-15px);
+    background-color: #01060f;
+    border-radius: 0 2px 2px 0;
+    box-shadow: -10px 0 50px 10px #666;
+}
+
+/* Modal visibility control */
+.modal {
+    display: none;
+}
+
+/* Choice menu styling */
+.choices {
+    display: none;
+    font-family: 'Lacquer', sans-serif;
+}
+
+/* Show class for visibility */
+.show {
+    display: flex;
+}
+
+/* Transition canvas styling */
+#transition {
+    display: none;
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+}
+
+/* Skip button visibility */
+.skip {
+    display: none;
+}
+
+.skip.show {
+    display: block;
+}
+
+/* Video positioning */
+.video {
+    /* Offsets video position */
+    margin-left: -100%;
+}

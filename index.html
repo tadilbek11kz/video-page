@@ -1,0 +1,127 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Interactive Video</title>
+
+    <!-- Preload custom font -->
+    <link rel="preload" href="assets/fonts/Lacquer-Regular.ttf" as="font" type="font/ttf" crossorigin="anonymous">
+
+    <!-- External resources -->
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link rel="stylesheet" href="assets/css/styles.css">
+    <script src="assets/js/index.js" defer></script>
+    <script src="https://unpkg.com/lucide@latest"></script>
+    <script defer src="https://www.youtube.com/iframe_api"></script>
+</head>
+
+<body class="min-h-screen bg-zinc-900">
+    <div class="flex">
+        <!-- Mobile sidebar toggle button -->
+        <button id="sidebarToggle" class="md:hidden fixed top-4 left-4 z-50 text-white">
+            <i data-lucide="menu" class="w-6 h-6"></i>
+        </button>
+
+        <!-- Navigation sidebar -->
+        <div id="sidebar" class="transform -translate-x-full md:translate-x-0 transition-transform duration-300 w-20 bg-black/30 backdrop-blur-xl fixed h-full flex flex-col items-center py-8 gap-8 z-50">
+            <!-- Logo -->
+            <div class="w-12 h-12 flex items-center justify-center">
+                <img class="w-10 h-10" src="assets/images/logo.png" alt="Logo">
+            </div>
+            <!-- Navigation links -->
+            <nav class="flex flex-col gap-6">
+                <a href="/video-page/index.html" class="text-white/80 hover:text-white">
+                    <i data-lucide="home" class="w-6 h-6"></i>
+                </a>
+                <a href="/video-page/about.html" class="text-white/80 hover:text-white">
+                    <i data-lucide="info" class="w-6 h-6"></i>
+                </a>
+            </nav>
+        </div>
+
+        <!-- Main content area -->
+        <main class="flex-1 md:ml-20">
+            <div class="min-h-screen flex items-center justify-center p-4">
+                <div class="w-full max-w-7xl">
+                    <!-- Interactive video scenes grid -->
+                    <div class="flex flex-1 flex-col md:flex-row">
+                        <!-- Scene 1 -->
+                        <a id="scene-1" class="book-container my-20 flex-[0.75] self-center md:my-12 md:self-start">
+                            <div class="book">
+                                <img alt="Morning Habits" src="assets/images/cover-4.png" />
+                            </div>
+                        </a>
+
+                        <!-- Scene 2 -->
+                        <a id="scene-2" class="book-container my-20 flex-[0.75] self-center md:my-12 md:self-start">
+                            <div class="book">
+                                <img alt="Morning Habits" src="assets/images/cover-5.png" />
+                            </div>
+                        </a>
+
+                        <!-- Scene 3 -->
+                        <a id="scene-3" class="book-container my-20 flex-[0.75] self-center md:my-12 md:self-start">
+                            <div class="book">
+                                <img alt="Morning Habits" src="assets/images/cover-6.png" />
+                            </div>
+                        </a>
+                    </div>
+                </div>
+            </div>
+        </main>
+
+        <!-- Video modal -->
+        <div class="modal fixed inset-0 bg-black/80 items-center justify-center z-50">
+            <div class="bg-zinc-900 p-4 rounded-lg max-w-4xl w-full">
+                <!-- Modal header -->
+                <div class="flex justify-between items-center mb-4">
+                    <h2 id="title" class="text-xl font-bold text-white">Morning Routine</h2>
+                    <button id="close" class="text-white hover:text-gray-300">
+                        <i data-lucide="x" class="w-6 h-6"></i>
+                    </button>
+                </div>
+
+                <!-- Video player container -->
+                <div class="relative">
+                    <!-- Progress bar -->
+                    <div class="w-full bg-white/30 rounded-full h-1">
+                        <div id="progress" class="bg-gray-900 h-1 rounded-full w-0"></div>
+                    </div>
+
+                    <!-- Video element -->
+                    <div class="overflow-hidden pointer-events-none aspect-video">
+                        <div id="video" class="video"></div>
+                    </div>
+
+                    <!-- Transition canvas -->
+                    <canvas id="transition"></canvas>
+
+                    <!-- Choice overlay -->
+                    <div class="choices absolute inset-0 items-end justify-center bg-black/60 z-50">
+                        <div class="text-center mb-4">
+                            <div id="options" class="flex space-x-4 lacquer-regular text-2xl md:text-5xl">
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- Video controls -->
+                    <div class="absolute bottom-0 left-0 right-0 bg-gradient-to-t from-black/60 to-transparent p-4">
+                        <div class="flex items-center justify-between">
+                            <button id="control" class="text-white hover:text-gray-300">
+                                <i data-lucide="volume-2" class="w-6 h-6"></i>
+                            </button>
+                            <button class="skip text-white hover:text-gray-300">
+                                <i data-lucide="skip-forward" class="w-6 h-6"></i>
+                            </button>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+    </div>
+</body>
+
+</html>
